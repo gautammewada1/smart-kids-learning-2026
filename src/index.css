@@ -1,0 +1,266 @@
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@700;800&family=Comic+Neue:wght@700&family=Fredoka:wght@600;700&family=Nunito:wght@800;900&family=Poppins:wght@700;800&family=Quicksand:wght@700&family=Baloo+Bhai+2:wght@700;800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-high-bg: var(--high-bg, #FFF9E6);
+  --color-high-ink: var(--high-ink, #2D3436);
+  --color-high-primary: var(--high-primary, #FF6B6B);
+  --color-high-secondary: var(--high-secondary, #4D96FF);
+  --color-high-accent: var(--high-accent, #FFD93D);
+  --color-high-success: var(--high-success, #6BCB77);
+  --color-card-bg: var(--card-bg, #FFFFFF);
+  --color-card-border: var(--card-border, #2D3436);
+  --color-text-secondary: var(--text-secondary, #64748B);
+  --color-header-bg: var(--header-bg, #FFFFFF);
+  --color-nav-bg: var(--nav-bg, #FFFFFF);
+  --color-button-bg: var(--button-bg, #FF6B6B);
+  --color-button-text: var(--button-text, #FFFFFF);
+  --color-shadow-color: var(--shadow-color, #2D3436);
+  --color-progress-bg: var(--progress-bg, #FEF08A);
+  --color-progress-fill: var(--progress-fill, #FF6B6B);
+}
+
+:root {
+  --english-font-family: 'Fredoka', 'Fredoka One', 'Arial Rounded MT Bold', 'Chalkboard SE', sans-serif;
+  --english-font-weight: 700;
+  transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease;
+}
+
+body, button, input, select, textarea, h1, h2, h3, h4, h5, h6, p, span {
+  font-family: var(--english-font-family, 'Fredoka', system-ui, sans-serif);
+  font-weight: var(--english-font-weight, 700);
+  transition: font-family 0.35s ease-in-out, background 0.4s ease, background-color 0.4s ease, color 0.4s ease;
+}
+
+/* Gujarati script text font override so Gujarati text retains clean native font */
+.gu-text, [lang="gu"], .font-gujarati {
+  font-family: 'Baloo Bhai 2', 'Noto Sans Gujarati', 'Shruti', 'Gujarati Sangam MN', system-ui, sans-serif !important;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg-gradient, var(--high-bg, #FFF9E6));
+  background-attachment: fixed;
+  color: var(--high-ink, #2D3436);
+  min-height: 100vh;
+}
+
+/* Children-focused Comic Book / High Density Styles */
+.comic-card {
+  background: #ffffff;
+  border: 8px solid var(--high-secondary, #4D96FF);
+  border-radius: 40px;
+  box-shadow: 0 14px 0 #e2e8f0;
+}
+
+.comic-card-success {
+  background: #ffffff;
+  border: 8px solid var(--high-success, #6BCB77);
+  border-radius: 40px;
+  box-shadow: 0 14px 0 #e2e8f0;
+}
+
+.comic-card-primary {
+  background: #ffffff;
+  border: 8px solid var(--high-primary, #FF6B6B);
+  border-radius: 40px;
+  box-shadow: 0 14px 0 #e2e8f0;
+}
+
+.comic-button-primary {
+  background: #ffffff;
+  border: 4px solid var(--high-primary, #FF6B6B);
+  color: var(--high-primary, #FF6B6B);
+  box-shadow: 0 6px 0 var(--high-primary, #FF6B6B);
+  transition: all 0.1s ease;
+}
+.comic-button-primary:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--high-primary, #FF6B6B);
+}
+
+.comic-button-success {
+  background: #ffffff;
+  border: 4px solid var(--high-success, #6BCB77);
+  color: var(--high-success, #6BCB77);
+  box-shadow: 0 6px 0 var(--high-success, #6BCB77);
+  transition: all 0.1s ease;
+}
+.comic-button-success:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--high-success, #6BCB77);
+}
+
+.comic-button-accent {
+  background: var(--high-accent, #FFD93D);
+  border: 4px solid var(--high-ink, #2D3436);
+  color: var(--high-ink, #2D3436);
+  box-shadow: 0 6px 0 var(--high-ink, #2D3436);
+  transition: all 0.1s ease;
+}
+.comic-button-accent:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--high-ink, #2D3436);
+}
+
+.comic-button-ink {
+  background: #ffffff;
+  border: 4px solid var(--high-ink, #2D3436);
+  color: var(--high-ink, #2D3436);
+  box-shadow: 0 6px 0 var(--high-ink, #2D3436);
+  transition: all 0.1s ease;
+}
+.comic-button-ink:active {
+  transform: translateY(4px);
+  box-shadow: 0 2px 0 var(--high-ink, #2D3436);
+}
+
+/* Printer-Friendly Worksheet Styles */
+@media print {
+  /* Hide all main app and screen elements */
+  body {
+    background-color: white !important;
+    background-image: none !important;
+    color: #1a1a1a !important;
+    font-size: 12pt;
+    margin: 0;
+    padding: 0;
+  }
+
+  #root > *:not(.print-container),
+  header,
+  footer,
+  aside,
+  button,
+  .no-print,
+  nav {
+    display: none !important;
+  }
+
+  /* Show and format print container */
+  .print-container {
+    display: block !important;
+    position: relative !important;
+    width: 100% !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 30px !important;
+    background: white !important;
+    color: black !important;
+    border: none !important;
+    box-shadow: none !important;
+  }
+
+  /* Force page breaks if needed */
+  .page-break {
+    page-break-after: always;
+  }
+}
+
+/* Default state: hide print containers on screen */
+@media screen {
+  .print-container {
+    display: none !important;
+  }
+}
+
+/* Handwriting practice lines helper for worksheet */
+.handwriting-lines {
+  background-image: linear-gradient(#e2e8f0 1px, transparent 1px),
+                    linear-gradient(rgba(239, 68, 68, 0.2) 1px, transparent 1px),
+                    linear-gradient(#e2e8f0 1px, transparent 1px);
+  background-size: 100% 40px;
+  background-position: 0 10px, 0 20px, 0 30px;
+  height: 80px;
+  border-bottom: 2px solid #cbd5e1;
+}
+
+/* Custom Keyframe Animations for Hero Header Mascot & Balloons */
+@keyframes lionGentleBounce {
+  0%, 100% {
+    transform: translateY(0px) scaleX(-1) rotate(0deg);
+  }
+  30% {
+    transform: translateY(-8px) scaleX(-1) rotate(3deg);
+  }
+  50% {
+    transform: translateY(-2px) scaleX(-1) rotate(-1deg);
+  }
+  70% {
+    transform: translateY(-10px) scaleX(-1) rotate(4deg);
+  }
+}
+
+@keyframes balloonFloatLeft {
+  0%, 100% {
+    transform: translateY(0px) rotate(-6deg);
+  }
+  50% {
+    transform: translateY(-14px) rotate(6deg);
+  }
+}
+
+@keyframes balloonFloatRight {
+  0%, 100% {
+    transform: translateY(0px) rotate(6deg);
+  }
+  50% {
+    transform: translateY(-16px) rotate(-6deg);
+  }
+}
+
+.animate-lion-bounce {
+  animation: lionGentleBounce 3.2s ease-in-out infinite;
+}
+
+.animate-balloon-left {
+  animation: balloonFloatLeft 4.5s ease-in-out infinite;
+}
+
+.animate-balloon-right {
+  animation: balloonFloatRight 5.2s ease-in-out infinite;
+}
+
+@keyframes cloudDrift {
+  0%, 100% {
+    transform: translate(0px, 0px);
+  }
+  50% {
+    transform: translate(14px, -8px);
+  }
+}
+
+.animate-cloud-drift {
+  animation: cloudDrift 20s ease-in-out infinite;
+}
+
+@keyframes sparkFade {
+  0%, 100% {
+    opacity: 0;
+    transform: scale(0.4) rotate(0deg);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2) rotate(45deg);
+  }
+}
+
+.animate-sparkle-1 {
+  animation: sparkFade 2.4s ease-in-out infinite;
+}
+
+.animate-sparkle-2 {
+  animation: sparkFade 3.1s ease-in-out infinite 0.8s;
+}
+
+.animate-sparkle-3 {
+  animation: sparkFade 2.8s ease-in-out infinite 1.5s;
+}
+
+.animate-sparkle-4 {
+  animation: sparkFade 3.5s ease-in-out infinite 0.4s;
+}
+
+
+

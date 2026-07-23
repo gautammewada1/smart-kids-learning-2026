@@ -1,0 +1,6 @@
+{
+  "name": "Kids Learning – English & Gujarati",
+  "description": "A colorful, child-friendly learning app for English and Gujarati alphabets, words, numbers, spellings, barakhadi, and interactive quizzes with full offline audio synthesis support.",
+  "requestFramePermissions": ["microphone"],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
