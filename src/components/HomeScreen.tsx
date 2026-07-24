@@ -394,16 +394,16 @@ export default function HomeScreen({
       <div className="w-full max-w-4xl z-10 mt-2 flex justify-center">
         <div 
           id="avatar-customizer-card" 
-          className="w-full bg-gradient-to-br from-[#8E2DE2] via-[#6a11cb] to-[#2575fc] rounded-[2rem] sm:rounded-[2.25rem] p-5 sm:p-7 md:p-8 border-4 border-high-ink shadow-[0_8px_0_#2D3436] hover:shadow-[0_12px_0_#2D3436] flex flex-col sm:flex-row items-center justify-between gap-5 sm:gap-6 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 group select-none"
+          className="w-full bg-gradient-to-br from-[#8E2DE2] via-[#6a11cb] to-[#2575fc] rounded-[1.5rem] sm:rounded-[1.75rem] py-3.5 px-4 sm:py-4.5 sm:px-6 md:py-5 md:px-7 border-4 border-high-ink shadow-[0_6px_0_#2D3436] hover:shadow-[0_9px_0_#2D3436] flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4 relative overflow-hidden transition-all duration-300 hover:-translate-y-1 group select-none"
         >
           {/* Gloss Reflection Overlay */}
-          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/30 via-white/10 to-transparent pointer-events-none rounded-t-[1.8rem]" />
+          <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/30 via-white/10 to-transparent pointer-events-none rounded-t-[1.4rem]" />
 
           {/* Decorative Floating Sparkles, Clouds, Stars */}
-          <span className="absolute top-3 left-4 text-2xl opacity-35 pointer-events-none animate-pulse">☁️</span>
-          <span className="absolute bottom-3 left-1/3 text-xl opacity-35 pointer-events-none">✨</span>
-          <span className="absolute top-4 right-16 text-3xl opacity-30 pointer-events-none animate-bounce">⭐</span>
-          <span className="absolute bottom-2 right-4 text-2xl opacity-35 pointer-events-none">🎈</span>
+          <span className="absolute top-2 left-3 text-lg opacity-35 pointer-events-none animate-pulse">☁️</span>
+          <span className="absolute bottom-2 left-1/3 text-base opacity-35 pointer-events-none">✨</span>
+          <span className="absolute top-3 right-12 text-xl opacity-30 pointer-events-none animate-bounce">⭐</span>
+          <span className="absolute bottom-1.5 right-3 text-lg opacity-35 pointer-events-none">🎈</span>
 
           {/* Mascot / Avatar with Glow & Sparkles */}
           <motion.button 
@@ -418,10 +418,10 @@ export default function HomeScreen({
             title="Customize your avatar! 🎨"
           >
             {/* Soft Glow behind avatar */}
-            <div className="absolute -inset-2 bg-white/30 rounded-full blur-md animate-pulse group-hover/avatar:bg-amber-300/50 transition-colors" />
+            <div className="absolute -inset-1.5 bg-white/30 rounded-full blur-md animate-pulse group-hover/avatar:bg-amber-300/50 transition-colors" />
 
-            {/* Larger Avatar Wrapper */}
-            <div className="relative z-10 p-2 bg-white/20 backdrop-blur-md rounded-full border-3 border-white/60 shadow-[0_4px_0_rgba(0,0,0,0.2)]">
+            {/* Avatar Wrapper */}
+            <div className="relative z-10 p-1 sm:p-1.5 bg-white/20 backdrop-blur-md rounded-full border-2 sm:border-3 border-white/60 shadow-[0_3px_0_rgba(0,0,0,0.2)]">
               <AvatarPreview 
                 config={progress.avatar || {
                   playerName: 'Little Explorer',
@@ -431,29 +431,29 @@ export default function HomeScreen({
                   borderColor: 'border-[#2D3436]',
                   borderStyle: 'solid'
                 }} 
-                size="lg" 
+                size="md" 
               />
             </div>
 
             {/* Floating Edit Badge */}
-            <span className="absolute -bottom-1 -right-1 bg-amber-300 text-high-ink text-xs sm:text-sm p-1.5 rounded-xl border-2 border-high-ink font-black group-hover/avatar:scale-125 transition-transform shadow-[0_2px_0_#2D3436] z-20 flex items-center justify-center">
+            <span className="absolute -bottom-0.5 -right-0.5 bg-amber-300 text-high-ink text-[10px] sm:text-xs p-1 rounded-lg border-2 border-high-ink font-black group-hover/avatar:scale-125 transition-transform shadow-[0_2px_0_#2D3436] z-20 flex items-center justify-center">
               🎨
             </span>
           </motion.button>
 
           {/* Center Text Section */}
           <div className="z-10 text-center sm:text-left flex-1">
-            <div className="inline-flex items-center gap-1.5 bg-white/25 backdrop-blur-md px-3 py-1 rounded-full border border-white/40 shadow-xs mb-2">
-              <span className="text-xs">✨</span>
-              <span className="text-[10px] sm:text-xs font-black uppercase text-white tracking-widest">
+            <div className="inline-flex items-center gap-1 bg-white/25 backdrop-blur-md px-2.5 py-0.5 rounded-full border border-white/40 shadow-xs mb-1">
+              <span className="text-[10px]">✨</span>
+              <span className="text-[9px] sm:text-[10px] font-black uppercase text-white tracking-widest">
                 {activeTab === 'gujarati' ? 'તમારું પ્રોફાઇલ' : 'MY PROFILE'}
               </span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white filter drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] leading-tight">
+            <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white filter drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] leading-tight">
               👋 {activeTab === 'gujarati' ? 'નમસ્તે' : 'Hi'}, <span className="text-amber-300">{progress.avatar?.playerName || (activeTab === 'gujarati' ? 'નાના બાળ' : 'Little Explorer')}</span>!
             </h3>
-            <p className="text-xs sm:text-sm font-extrabold text-white/95 filter drop-shadow-xs mt-1 leading-snug">
+            <p className="text-[11px] sm:text-xs font-extrabold text-white/95 filter drop-shadow-xs mt-0.5 leading-snug">
               {activeTab === 'gujarati' ? 'આજે કંઈક નવું અને અદ્ભુત શીખવા તૈયાર છો?' : 'Ready to learn something amazing today?'}
             </p>
           </div>
@@ -467,9 +467,9 @@ export default function HomeScreen({
               playClickSound(settings.soundEnabled);
               setShowCustomizer(true);
             }}
-            className="z-10 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 hover:from-amber-300 hover:to-orange-400 text-high-ink font-black py-3 px-6 rounded-full border-3 border-high-ink shadow-[0_4px_0_#2D3436] active:shadow-[0_1px_0_#2D3436] transition-all flex items-center gap-2 text-xs sm:text-sm uppercase tracking-wider cursor-pointer shrink-0"
+            className="z-10 bg-gradient-to-r from-amber-400 via-orange-400 to-amber-500 hover:from-amber-300 hover:to-orange-400 text-high-ink font-black py-2 px-4 sm:py-2.5 sm:px-5 rounded-full border-3 border-high-ink shadow-[0_3px_0_#2D3436] active:shadow-[0_1px_0_#2D3436] transition-all flex items-center gap-1.5 text-[11px] sm:text-xs uppercase tracking-wider cursor-pointer shrink-0"
           >
-            <span className="text-base sm:text-lg animate-bounce">🎨</span>
+            <span className="text-sm sm:text-base animate-bounce">🎨</span>
             <span>{activeTab === 'gujarati' ? 'અવતાર બદલો' : 'Customize Avatar'}</span>
           </motion.button>
         </div>
@@ -481,52 +481,52 @@ export default function HomeScreen({
         const isCompletedToday = progress.dailyQuizLastCompletedDate === todayDate;
 
         return (
-          <div id="daily-quiz-banner" className="w-full max-w-4xl z-10 mt-6 mb-2">
+          <div id="daily-quiz-banner" className="w-full max-w-4xl z-10 mt-4 mb-2">
             <motion.div 
-              whileHover={{ y: -4 }}
-              className="bg-gradient-to-r from-[#FFD200] via-[#FF9F43] to-[#FF5252] rounded-[2rem] sm:rounded-[2.25rem] p-6 sm:p-7 md:p-8 border-4 border-high-ink shadow-[0_8px_0_#2D3436] hover:shadow-[0_12px_0_#2D3436] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-6 transition-all duration-300 group select-none"
+              whileHover={{ y: -3 }}
+              className="bg-gradient-to-r from-[#FFD200] via-[#FF9F43] to-[#FF5252] rounded-[1.5rem] sm:rounded-[1.75rem] py-3.5 px-4 sm:py-4.5 sm:px-6 md:py-5 md:px-7 border-4 border-high-ink shadow-[0_6px_0_#2D3436] hover:shadow-[0_9px_0_#2D3436] relative overflow-hidden flex flex-col md:flex-row items-center justify-between gap-3.5 sm:gap-4 transition-all duration-300 group select-none"
             >
               {/* Gloss Reflection Overlay */}
-              <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/35 via-white/10 to-transparent pointer-events-none rounded-t-[1.8rem]" />
+              <div className="absolute top-0 inset-x-0 h-1/2 bg-gradient-to-b from-white/35 via-white/10 to-transparent pointer-events-none rounded-t-[1.4rem]" />
 
               {/* Watermarks & Floating Bubbles/Sparkles */}
-              <div className="absolute -right-6 -bottom-6 text-9xl opacity-10 pointer-events-none select-none rotate-12 group-hover:scale-110 transition-transform duration-700">
+              <div className="absolute -right-4 -bottom-4 text-7xl opacity-10 pointer-events-none select-none rotate-12 group-hover:scale-110 transition-transform duration-700">
                 🏆
               </div>
-              <div className="absolute top-3 right-1/4 text-8xl opacity-10 pointer-events-none select-none -rotate-12">
+              <div className="absolute top-2 right-1/4 text-6xl opacity-10 pointer-events-none select-none -rotate-12">
                 🎯
               </div>
-              <span className="absolute top-2 left-10 text-2xl opacity-40 pointer-events-none animate-pulse">✨</span>
-              <span className="absolute bottom-3 left-1/3 text-xl opacity-30 pointer-events-none">🎈</span>
+              <span className="absolute top-1.5 left-8 text-xl opacity-40 pointer-events-none animate-pulse">✨</span>
+              <span className="absolute bottom-2 left-1/3 text-lg opacity-30 pointer-events-none">🎈</span>
 
               {/* Top Right Reward Badge */}
-              <div className="absolute top-4 right-4 sm:top-5 sm:right-5 z-20">
-                <span className="bg-amber-300 text-high-ink border-3 border-high-ink shadow-[0_3px_0_#2D3436] rounded-full px-3.5 py-1.5 text-xs sm:text-sm font-black uppercase tracking-widest flex items-center gap-1.5 animate-bounce">
+              <div className="absolute top-2.5 right-2.5 sm:top-3.5 sm:right-4 z-20">
+                <span className="bg-amber-300 text-high-ink border-2 border-high-ink shadow-[0_2px_0_#2D3436] rounded-full px-2.5 py-1 text-[10px] sm:text-xs font-black uppercase tracking-widest flex items-center gap-1 animate-bounce">
                   <span>🏆</span>
                   <span>{isCompletedToday ? (activeTab === 'gujarati' ? 'પૂર્ણ ✅' : 'CLEARED ✅') : '+3 Stars ⭐'}</span>
                 </span>
               </div>
 
               {/* Left: Challenge Icon & Info */}
-              <div className="flex items-center gap-5 text-center md:text-left flex-col md:flex-row z-10 flex-1">
+              <div className="flex items-center gap-3 sm:gap-4 text-center md:text-left flex-col md:flex-row z-10 flex-1">
                 {/* Large Premium Animated Challenge Icon Box */}
-                <div className="w-16 h-16 sm:w-20 sm:h-20 md:w-22 md:h-22 rounded-3xl bg-white/30 backdrop-blur-md border-4 border-white/70 shadow-[0_6px_0_rgba(0,0,0,0.15)] flex items-center justify-center text-3xl sm:text-4xl md:text-5xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 shrink-0 relative">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-2xl bg-white/30 backdrop-blur-md border-3 border-white/70 shadow-[0_4px_0_rgba(0,0,0,0.15)] flex items-center justify-center text-2xl sm:text-3xl md:text-4xl group-hover:scale-110 group-hover:rotate-6 transition-transform duration-300 shrink-0 relative">
                   <span className="animate-pulse">🎯</span>
-                  <div className="absolute -inset-1 bg-amber-300/30 rounded-3xl blur-md pointer-events-none -z-10" />
+                  <div className="absolute -inset-1 bg-amber-300/30 rounded-2xl blur-md pointer-events-none -z-10" />
                 </div>
 
-                <div className="pr-0 md:pr-16">
-                  <div className="flex items-center gap-2 justify-center md:justify-start mb-1">
-                    <span className="bg-black/25 backdrop-blur-md text-white text-[10px] sm:text-xs font-black uppercase py-1 px-3 rounded-full tracking-widest border border-white/30 shadow-xs">
+                <div className="pr-0 md:pr-12">
+                  <div className="flex items-center gap-1.5 justify-center md:justify-start mb-0.5">
+                    <span className="bg-black/25 backdrop-blur-md text-white text-[9px] sm:text-[10px] font-black uppercase py-0.5 px-2.5 rounded-full tracking-widest border border-white/30 shadow-xs">
                       {activeTab === 'gujarati' ? 'દૈનિક પડકાર' : 'DAILY CHALLENGE'}
                     </span>
                   </div>
 
-                  <h3 className="text-xl sm:text-2xl md:text-3xl font-black text-white filter drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] leading-tight">
+                  <h3 className="text-lg sm:text-xl md:text-2xl font-black text-white filter drop-shadow-[0_2px_3px_rgba(0,0,0,0.3)] leading-tight">
                     🎯 {activeTab === 'gujarati' ? 'દૈનિક ક્વિઝ પડકાર' : 'Daily Challenge'}
                   </h3>
 
-                  <p className="text-xs sm:text-sm md:text-base font-extrabold text-white/95 filter drop-shadow-xs mt-1.5 max-w-lg leading-snug">
+                  <p className="text-[11px] sm:text-xs md:text-sm font-extrabold text-white/95 filter drop-shadow-xs mt-0.5 max-w-lg leading-snug">
                     {isCompletedToday
                       ? (activeTab === 'gujarati' 
                           ? 'શાનદાર! તમે આજનો દૈનિક પડકાર પૂર્ણ કર્યો છે! 🌟' 
@@ -539,7 +539,7 @@ export default function HomeScreen({
                 </div>
               </div>
 
-              {/* Right: Full-width / Large Start Challenge Button */}
+              {/* Right: Start Challenge Button */}
               <div className="w-full md:w-auto shrink-0 z-10 flex justify-center">
                 <motion.button
                   type="button"
@@ -549,13 +549,13 @@ export default function HomeScreen({
                     playClickSound(settings.soundEnabled);
                     onSelectScreen(ScreenType.Quiz, activeTab === 'english' ? 'en' : 'gu', 'daily_challenge');
                   }}
-                  className={`font-black py-3.5 px-8 sm:px-10 rounded-2xl border-4 border-high-ink shadow-[0_5px_0_#2D3436] active:shadow-[0_1px_0_#2D3436] transition-all text-base sm:text-lg md:text-xl flex items-center justify-center gap-3 cursor-pointer w-full md:w-auto uppercase tracking-wider ${
+                  className={`font-black py-2.5 px-6 sm:px-8 rounded-xl sm:rounded-2xl border-3 border-high-ink shadow-[0_3px_0_#2D3436] active:shadow-[0_1px_0_#2D3436] transition-all text-sm sm:text-base md:text-lg flex items-center justify-center gap-2 cursor-pointer w-full md:w-auto uppercase tracking-wider ${
                     isCompletedToday
                       ? 'bg-white hover:bg-slate-100 text-high-ink'
                       : 'bg-gradient-to-r from-[#FF416C] to-[#FF4B2B] text-white hover:brightness-110'
                   }`}
                 >
-                  <span className="text-xl sm:text-2xl animate-bounce">🚀</span>
+                  <span className="text-lg sm:text-xl animate-bounce">🚀</span>
                   <span>
                     {isCompletedToday 
                       ? (activeTab === 'gujarati' ? 'ફરીથી રમો 🔄' : 'Replay Challenge 🔄') 
