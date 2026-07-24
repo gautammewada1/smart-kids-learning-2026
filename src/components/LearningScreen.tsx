@@ -132,7 +132,7 @@ export default function LearningScreen({
   // 8. Gujarati Ghadiya
   else if (type === ScreenType.GujaratiGhadiya) {
     itemsCount = 20; // 1 to 20 tables
-    title = 'ગુજરાતી અંકોના શબ્દો';
+    title = 'ગુજરાતી ઘડિયા';
     bgClass = 'bg-[#FF851B]';
   }
   // 9. English Tables

@@ -576,7 +576,7 @@ export default function QuizSection({ settings, onBackToHome, onCompleteQuiz, la
     { key: QuizSubCategory.GujaratiVyanjan, label: 'ગુજરાતી કક્કો', emoji: 'ક', color: 'bg-[#FF851B]' },
     { key: QuizSubCategory.GujaratiBarakhadi, label: 'ગુજરાતી બારાખડી', emoji: 'કિ', color: 'bg-[#39CCCC]' },
     { key: QuizSubCategory.GujaratiNumbers, label: 'ગુજરાતી અંકો', emoji: '૧', color: 'bg-[#FF41C8]' },
-    { key: QuizSubCategory.GujaratiGhadiya, label: 'ગુજરાતી અંકોના શબ્દો', emoji: '✖️', color: 'bg-[#FF851B]' },
+    { key: QuizSubCategory.GujaratiGhadiya, label: 'ગુજરાતી ઘડિયા', emoji: '✖️', color: 'bg-[#FF851B]' },
     { key: QuizSubCategory.GujaratiStories, label: 'ગુજરાતી વાર્તાઓ', emoji: '📖', color: 'bg-[#FF851B]' },
     { key: QuizSubCategory.GujaratiVoiceSpelling, label: 'અવાજથી સ્પેલિંગ', emoji: '🎙️', color: 'bg-[#1DDB9E]' },
   ];

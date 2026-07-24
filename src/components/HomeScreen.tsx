@@ -270,11 +270,11 @@ export default function HomeScreen({
     },
     {
       type: ScreenType.GujaratiGhadiya,
-      title: 'ગુજરાતી અંકોના શબ્દો',
+      title: 'ગુજરાતી ઘડિયા',
       subtitle: '૧ થી ૨૦ ના ઘડિયા અને અંકોના શબ્દો 📚',
       emoji: '🧮',
       gradient: 'from-[#654ea3] via-[#eaafc8] to-[#8e2de2]',
-      badge: 'અંકોના શબ્દો',
+      badge: 'ઘડિયા',
       decorations: ['🧮', '✨']
     },
     {
