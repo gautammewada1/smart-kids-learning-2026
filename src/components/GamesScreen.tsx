@@ -689,6 +689,7 @@ function LetterMatchGame({ settings }: { settings: AppSettings }) {
    2. GUJARATI SOUND MATCH GAME COMPONENT (Letters / Barakhadi)
    ========================================== */
 const BARAKHADI_MODIFIERS = [
+  { suffix: '', name: 'અ', soundHint: 'a' },
   { suffix: 'ા', name: 'આ', soundHint: 'aa' },
   { suffix: 'િ', name: 'ઇ', soundHint: 'i' },
   { suffix: 'ી', name: 'ઈ', soundHint: 'ee' },
@@ -702,9 +703,7 @@ const BARAKHADI_MODIFIERS = [
   { suffix: 'ઃ', name: 'અઃ', soundHint: 'aha' },
 ];
 
-const BASE_CONSONANTS = [
-  'ક', 'ખ', 'ગ', 'ચ', 'જ', 'ત', 'દ', 'ન', 'પ', 'બ', 'મ', 'ર', 'લ', 'વ', 'સ', 'હ'
-];
+const BASE_CONSONANTS = GUJARATI_CONSONANTS.map(c => c.char);
 
 function GujaratiSoundMatchGame({ settings }: { settings: AppSettings }) {
   const [gameMode, setGameMode] = useState<'letters' | 'barakhadi'>('letters');
@@ -783,10 +782,17 @@ function GujaratiSoundMatchGame({ settings }: { settings: AppSettings }) {
     generateTurn(gameMode);
   }, [gameMode]);
 
+  const getSpeakableSymbol = (sym: string) => {
+    if (sym.endsWith('ઃ')) {
+      return `${sym.slice(0, -1)}હ`;
+    }
+    return sym;
+  };
+
   const handleSpeak = () => {
     playClickSound(settings.soundEnabled);
     if (currentSymbol) {
-      speakText(currentSymbol, 'gu', settings.gujaratiVoiceURI, settings.soundEnabled);
+      speakText(getSpeakableSymbol(currentSymbol), 'gu', settings.gujaratiVoiceURI, settings.soundEnabled);
     }
   };
 
@@ -794,7 +800,7 @@ function GujaratiSoundMatchGame({ settings }: { settings: AppSettings }) {
   useEffect(() => {
     if (currentSymbol) {
       const timer = setTimeout(() => {
-        speakText(currentSymbol, 'gu', settings.gujaratiVoiceURI, settings.soundEnabled);
+        speakText(getSpeakableSymbol(currentSymbol), 'gu', settings.gujaratiVoiceURI, settings.soundEnabled);
       }, 500);
       return () => clearTimeout(timer);
     }
@@ -807,7 +813,7 @@ function GujaratiSoundMatchGame({ settings }: { settings: AppSettings }) {
     if (option === currentSymbol) {
       setAnsweredCorrectly(true);
       playSuccessSound(settings.soundEnabled);
-      speakText(`સાચું! આ '${currentSymbol}' છે.`, 'gu', settings.gujaratiVoiceURI, settings.soundEnabled);
+      speakText(`સાચું! આ '${getSpeakableSymbol(currentSymbol)}' છે.`, 'gu', settings.gujaratiVoiceURI, settings.soundEnabled);
       setScore(prev => prev + 1);
       
       confetti({

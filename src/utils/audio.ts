@@ -332,41 +332,14 @@ async function tryPlayLocalAudio(candidates: string[]): Promise<boolean> {
  * Speaks text using Android Native Text-to-Speech plugin (@capacitor-community/text-to-speech).
  */
 async function speakNativeTTS(text: string, lang: 'en' | 'gu'): Promise<boolean> {
+  if (!Capacitor.isNativePlatform()) {
+    return false;
+  }
   try {
     await TextToSpeech.stop();
 
-    let targetLang = lang === 'gu' ? 'gu-IN' : 'en-US';
-
-    if (lang === 'gu') {
-      try {
-        const check = await TextToSpeech.isLanguageSupported({ lang: 'gu-IN' });
-        if (!check.supported) {
-          const checkGu = await TextToSpeech.isLanguageSupported({ lang: 'gu' });
-          if (checkGu.supported) {
-            targetLang = 'gu';
-          } else {
-            const checkHi = await TextToSpeech.isLanguageSupported({ lang: 'hi-IN' });
-            if (checkHi.supported) {
-              targetLang = 'hi-IN';
-            }
-          }
-        }
-      } catch (e) {
-        // Fall back to gu-IN
-      }
-    } else {
-      try {
-        const check = await TextToSpeech.isLanguageSupported({ lang: 'en-US' });
-        if (!check.supported) {
-          const checkIn = await TextToSpeech.isLanguageSupported({ lang: 'en-IN' });
-          if (checkIn.supported) {
-            targetLang = 'en-IN';
-          }
-        }
-      } catch (e) {
-        // Fall back to en-US
-      }
-    }
+    // Strictly enforce Gujarati (gu-IN) or English (en-US)
+    const targetLang = lang === 'gu' ? 'gu-IN' : 'en-US';
 
     await TextToSpeech.speak({
       text: text,
@@ -433,20 +406,8 @@ function speakWebSpeechSynthesis(
     let selectedVoice: SpeechSynthesisVoice | undefined;
 
     const enVoices = voicesList.filter(v => v.lang.toLowerCase().startsWith('en') || v.lang.toLowerCase().replace('_', '-').startsWith('en-'));
-    let guVoices = voicesList.filter(v => v.lang.toLowerCase().startsWith('gu') || v.lang.toLowerCase().replace('_', '-').startsWith('gu-'));
-    
-    if (guVoices.length === 0) {
-      guVoices = voicesList.filter(v => {
-        const l = v.lang.toLowerCase();
-        return l.includes('hi-in') || l.includes('hi_in') || l.startsWith('hi');
-      });
-      if (guVoices.length === 0) {
-        guVoices = voicesList.filter(v => {
-          const l = v.lang.toLowerCase();
-          return l.includes('en-in') || l.includes('en_in');
-        });
-      }
-    }
+    // Strict Gujarati voices only - never allow fallback to Hindi or English voices for Gujarati speech
+    const guVoices = voicesList.filter(v => v.lang.toLowerCase().startsWith('gu') || v.lang.toLowerCase().replace('_', '-').startsWith('gu-'));
 
     if (lang === 'en') {
       if (voiceURI) {
@@ -466,22 +427,10 @@ function speakWebSpeechSynthesis(
         selectedVoice = guVoices.find(v => v.voiceURI === voiceURI);
       }
       if (!selectedVoice) {
-        selectedVoice = voicesList.find(v => {
+        selectedVoice = guVoices.find(v => {
           const l = v.lang.toLowerCase();
           return l === 'gu-in' || l === 'gu_in' || l.startsWith('gu');
         });
-        if (!selectedVoice) {
-          selectedVoice = voicesList.find(v => {
-            const l = v.lang.toLowerCase();
-            return l.includes('hi-in') || l.includes('hi_in') || l.startsWith('hi');
-          });
-        }
-        if (!selectedVoice) {
-          selectedVoice = voicesList.find(v => {
-            const l = v.lang.toLowerCase();
-            return l.includes('en-in') || l.includes('en_in');
-          });
-        }
         if (!selectedVoice && guVoices.length > 0) {
           selectedVoice = guVoices[0];
         }
@@ -492,6 +441,7 @@ function speakWebSpeechSynthesis(
       utterance.voice = selectedVoice;
       utterance.lang = selectedVoice.lang;
     } else {
+      // Strictly enforce gu-IN or en-US locale
       utterance.lang = lang === 'gu' ? 'gu-IN' : 'en-US';
     }
 
@@ -626,4 +576,16 @@ export function playLionRoarSound(enabled: boolean) {
     console.error('Lion roar sound failed:', err);
   }
 }
+
+/**
+ * Formats a Gujarati Barakhadi consonant and matra sign for TTS speech synthesis.
+ * Handles visarga ('ઃ') by converting to 'હ' for natural Gujarati TTS pronunciation (kaha, khaha, gaha...).
+ */
+export function getBarakhadiSpeakText(consonantChar: string, matraSign: string): string {
+  if (matraSign === 'ઃ') {
+    return `${consonantChar}હ`;
+  }
+  return `${consonantChar}${matraSign}`;
+}
+
 

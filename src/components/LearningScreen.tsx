@@ -17,7 +17,7 @@ import {
   getGujaratiTable,
   TableRow
 } from '../data';
-import { speakText, playClickSound } from '../utils/audio';
+import { speakText, playClickSound, getBarakhadiSpeakText } from '../utils/audio';
 import { UserProgress } from '../utils/userState';
 import ChikuMascot from './ChikuMascot';
 
@@ -209,8 +209,8 @@ export default function LearningScreen({
       const matraIdx = currentIndex % GUJARATI_BARAKHADI_MATRAS.length;
       const consonant = GUJARATI_CONSONANTS[consonantIdx];
       const matra = GUJARATI_BARAKHADI_MATRAS[matraIdx];
-      // Speak combined barakhadi letter phonetically (e.g. કા)
-      textToSpeak = `${consonant.char}${matra.sign}`;
+      // Speak exact Gujarati barakhadi letter phonetically (e.g. ક, કા, કિ, કી... કહ)
+      textToSpeak = getBarakhadiSpeakText(consonant.char, matra.sign);
       language = 'gu';
     } 
     else if (type === ScreenType.GujaratiNumbers) {
